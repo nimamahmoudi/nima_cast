@@ -27,7 +27,7 @@ class HelloWorld(cmd.Cmd):
     """Simple command processor example."""
 
     prompt = '(nima.cast) '
-    intro = "Welcome! Type ? to list commands"
+    intro = "Welcome! Type ? to list commands. options: --no-minio and --show-debug"
 
     cast = None
     casts = None
@@ -168,5 +168,8 @@ class HelloWorld(cmd.Cmd):
         """exits this environment"""
         return True
 
-if __name__ == '__main__':
+def main():
     HelloWorld().cmdloop()
+
+if __name__ == '__main__':
+    main()
