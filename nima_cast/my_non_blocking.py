@@ -18,6 +18,11 @@ else:
     minio_secret_key = os.environ['SECRET_KEY']
     BUCKET_NAME = 'data'
 
+if '--show-debug' in sys.argv:
+    logging.basicConfig(level=logging.DEBUG)
+else:
+    logging.basicConfig(level=logging.INFO)
+
 class HelloWorld(cmd.Cmd):
     """Simple command processor example."""
 
@@ -71,7 +76,6 @@ class HelloWorld(cmd.Cmd):
         self.objects = list(self.minioClient.list_objects(BUCKET_NAME, prefix='tv/', recursive=True))
         i = 0
         for obj in self.objects:
-            # print("[{}]- {}".format(i, self.minioClient.presigned_get_object(BUCKET_NAME, obj.object_name)))
             print("[{:2d}]- \t{}".format(i, obj.object_name))
             i += 1
 
@@ -94,28 +98,10 @@ class HelloWorld(cmd.Cmd):
         url = self.minioClient.presigned_get_object(BUCKET_NAME, obj.object_name)
         print(url)
 
-        # try:
-        #     self.cast.media_controller.stop()
-        # except:
-        #     pass
-        # self.cast.play_media(url, "video/mp4")
-
-        t = 0
-        while True:
-            polltime = 0.1
-            can_read, _, _ = select.select([self.cast.socket_client.get_socket()], [], [], polltime)
-            if can_read:
-                #received something on the socket, handle it with run_once()
-                self.cast.socket_client.run_once()
-
-            t += 1
-            if t == 5:
-                self.cast.play_media(url, "video/mp4")
-
-            if t > 10:
-                break
-
-            time.sleep(1)
+        self.cast.wait()
+        mc = self.cast.media_controller
+        mc.play_media(url, 'video/mp4')
+        mc.block_until_active(10)
 
     def do_seek(self, time):
         """seek [time] starts playing the file on the specified time"""
@@ -139,126 +125,48 @@ class HelloWorld(cmd.Cmd):
         mc.play_media(url, 'video/mp4')
         mc.block_until_active(10)
 
-        # t = 0
-        # while True:
-        #     polltime = 0.1
-        #     can_read, _, _ = select.select([self.cast.socket_client.get_socket()], [], [], polltime)
-        #     if can_read:
-        #         #received something on the socket, handle it with run_once()
-        #         self.cast.socket_client.run_once()
-
-        #     t += 1
-        #     if t == 5:
-        #         self.cast.play_media(url, "video/mp4")
-
-        #     if t > 10:
-        #         break
-
-        #     time.sleep(1)
-                
-
     def do_pause(self, line):
         if not self.cast:
             print("please select cast device using <select>, use <search> for options")
             return
-        
-        t = 0
-        while True:
-            polltime = 0.1
-            can_read, _, _ = select.select([self.cast.socket_client.get_socket()], [], [], polltime)
-            if can_read:
-                #received something on the socket, handle it with run_once()
-                self.cast.socket_client.run_once()
 
-            t += 1
-            if t > 5:
-                self.cast.media_controller.pause()
-                break
-
-            time.sleep(1)
+        self.cast.wait()
+        mc = self.cast.media_controller
+        mc.pause()
         
     def do_resume(self, line):
         if not self.cast:
             print("please select cast device using <select>, use <search> for options")
             return
         
-        t = 0
-        while True:
-            polltime = 0.1
-            can_read, _, _ = select.select([self.cast.socket_client.get_socket()], [], [], polltime)
-            if can_read:
-                #received something on the socket, handle it with run_once()
-                self.cast.socket_client.run_once()
-
-            t += 1
-            if t > 5:
-                self.cast.media_controller.play()
-                break
-
-            time.sleep(1)
+        self.cast.wait()
+        mc = self.cast.media_controller
+        mc.play()
 
     def do_stop(self, line):
+        """stop stops the currently playing file"""
         if not self.cast:
             print("please select cast device using <select>, use <search> for options")
             return
 
-        t = 0
-        while True:
-            polltime = 0.1
-            can_read, _, _ = select.select([self.cast.socket_client.get_socket()], [], [], polltime)
-            if can_read:
-                #received something on the socket, handle it with run_once()
-                self.cast.socket_client.run_once()
+        self.cast.wait()
+        mc = self.cast.media_controller
+        mc.stop()
 
-            t += 1
-            if t > 5:
-                self.cast.media_controller.stop()
-                break
-
-            time.sleep(1)
+    def do_quit(self, line):
+        """quit stops the current app on the chromecast"""
+        self.cast.wait()
+        self.cast.quit_app()
+        return
 
     
     def do_EOF(self, line):
-        # t = 0
-        # if self.cast:
-        #     while True:
-        #         polltime = 0.1
-        #         can_read, _, _ = select.select([self.cast.socket_client.get_socket()], [], [], polltime)
-        #         if can_read:
-        #             #received something on the socket, handle it with run_once()
-        #             self.cast.socket_client.run_once()
-
-        #         t += 1
-        #         if t > 5:
-        #             self.cast.quit_app()
-        #             break
-
-        #         time.sleep(1)
-
+        """exits this environment, just press Ctrl+D"""
         return True
 
     def do_exit(self, line):
-        # t = 0
-        # if self.cast:
-        #     while True:
-        #         polltime = 0.1
-        #         can_read, _, _ = select.select([self.cast.socket_client.get_socket()], [], [], polltime)
-        #         if can_read:
-        #             #received something on the socket, handle it with run_once()
-        #             self.cast.socket_client.run_once()
-
-        #         t += 1
-        #         if t > 5:
-        #             self.cast.quit_app()
-        #             break
-
-        #         time.sleep(1)
+        """exits this environment"""
         return True
-
-if '--show-debug' in sys.argv:
-    logging.basicConfig(level=logging.DEBUG)
-else:
-    logging.basicConfig(level=logging.INFO)
 
 if __name__ == '__main__':
     HelloWorld().cmdloop()
