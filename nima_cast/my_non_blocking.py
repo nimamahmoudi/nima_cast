@@ -8,11 +8,15 @@ import logging
 import select
 import time
 
-
-minio_server = os.environ['MINIO_SERVER']
-minio_access_key = os.environ['ACCESS_KEY']
-minio_secret_key = os.environ['SECRET_KEY']
-BUCKET_NAME = 'data'
+no_minio = False
+if '--no-minio' in sys.argv:
+    no_minio = True
+    print('Skipping minio server...')
+else:
+    minio_server = os.environ['MINIO_SERVER']
+    minio_access_key = os.environ['ACCESS_KEY']
+    minio_secret_key = os.environ['SECRET_KEY']
+    BUCKET_NAME = 'data'
 
 class HelloWorld(cmd.Cmd):
     """Simple command processor example."""
@@ -25,10 +29,11 @@ class HelloWorld(cmd.Cmd):
     friendly_names = None
     fn = None
 
-    minioClient = Minio(minio_server,
-                    access_key= minio_access_key,
-                    secret_key= minio_secret_key,
-                    secure=False)
+    if not no_minio:
+        minioClient = Minio(minio_server,
+                        access_key= minio_access_key,
+                        secret_key= minio_secret_key,
+                        secure=False)
 
     def do_search(self, line):
         """Search a list of available devices..."""
