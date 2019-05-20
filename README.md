@@ -1,4 +1,22 @@
-# nima_cast
+[![Build Status](https://travis-ci.com/nimamahmoudi/nima_cast.svg?token=J1fG4B1WmwjMJ3ZExa6D&branch=master)](https://travis-ci.com/nimamahmoudi/nima_cast)
+[![made-with-python](https://img.shields.io/badge/Made%20with-Python-1f425f.svg)](https://www.python.org/)
+[![PyPI version nima-cast](https://badge.fury.io/py/nima-cast.svg)](https://pypi.python.org/pypi/nima-cast/)
+[![PyPI license](https://img.shields.io/pypi/l/nima-cast.svg)](https://pypi.python.org/pypi/nima-cast/)
+[![PyPI format](https://img.shields.io/pypi/format/nima-cast.svg)](https://pypi.python.org/pypi/nima-cast/)
+[![PyPI pyversions](https://img.shields.io/pypi/pyversions/nima-cast.svg)](https://pypi.python.org/pypi/nima-cast/)
+[![PyPI status](https://img.shields.io/pypi/status/nima-cast.svg)](https://pypi.python.org/pypi/nima-cast/)
+![PyPI - License](https://img.shields.io/pypi/l/nima-cast.svg)
+![GitHub](https://img.shields.io/github/license/nimamahmoudi/nima_cast.svg)
+![Libraries.io dependency status for latest release](https://img.shields.io/librariesio/release/pypi/nima-cast.svg)
+![PyPI - Downloads](https://img.shields.io/pypi/dm/nima-cast.svg)
+![GitHub issues](https://img.shields.io/github/issues/nimamahmoudi/nima_cast.svg)
+![GitHub last commit](https://img.shields.io/github/last-commit/nimamahmoudi/nima_cast.svg)
+
+
+
+
+
+# nima_cast CLI
 
 # Usage
 
