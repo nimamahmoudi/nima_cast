@@ -49,12 +49,8 @@ Install dependencies:
 pip install twine
 ```
 
-create a source distribution with the following command:
+create a source distribution and upload them:
 ```bash
 python setup.py sdist
-```
-
-Then, run the following command:
-```bash
 twine upload dist/*
 ```
