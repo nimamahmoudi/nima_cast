@@ -23,6 +23,11 @@ if '--show-debug' in sys.argv:
 else:
     logging.basicConfig(level=logging.INFO)
 
+
+def get_sec(time_str):
+    h, m, s = time_str.split(':')
+    return int(h) * 3600 + int(m) * 60 + int(s)
+
 class HelloWorld(cmd.Cmd):
     """Simple command processor example."""
 
@@ -51,11 +56,21 @@ class HelloWorld(cmd.Cmd):
             fn = self.friendly_names[i]
             print('[{}] - {}'.format(i, fn))
 
+    def do_goto(self, line):
+        """goto 0:00:25 seeks to the time specified as an argument"""
+        return self.do_seek(get_sec(line))
+
     def do_select(self, num):
         """select [num] selects the number in the search results"""
         if not num:
-            print("Please choose an index")
-            return
+            self.do_search(None)
+            # print("Please choose an index")
+            user_input = input ("Please choose an index: ")
+            try:
+                num = int(user_input)
+            except:
+                print("please choose a correct index!")
+                return
 
         num = int(num)
         if num >= len(self.friendly_names):
@@ -66,6 +81,9 @@ class HelloWorld(cmd.Cmd):
         self.cast = self.casts[num]
 
         self.cast.connect()
+        self.cast.wait()
+        mc = self.cast.media_controller
+        mc.block_until_active(10)
 
     def do_device(self, line):
         """Shows the name of the selected device"""
@@ -108,6 +126,7 @@ class HelloWorld(cmd.Cmd):
         if not self.cast:
             print("please select cast device using <select>, use <search> for options")
             return
+
         time = int(time)
         self.cast.wait()
         mc = self.cast.media_controller
