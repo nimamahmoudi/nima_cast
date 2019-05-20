@@ -194,10 +194,11 @@ class HelloWorld(cmd.Cmd):
         return True
 
 def main():
-    HelloWorld().cmdloop()
-
-if __name__ == '__main__':
     if '--quit' in sys.argv:
         print('Quitting...')
+        return
     else:
-        main()
+        HelloWorld().cmdloop()
+
+if __name__ == '__main__':
+    main()
