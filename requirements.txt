@@ -1,2 +1,2 @@
-pychromecast
+git+https://github.com/balloob/pychromecast
 minio
