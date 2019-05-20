@@ -55,3 +55,9 @@ nano nima_cast/__init__.py
 python setup.py sdist
 twine upload dist/*
 ```
+
+Add travis info:
+
+```bash
+travis encrypt your-password-here --add deploy.password
+```
