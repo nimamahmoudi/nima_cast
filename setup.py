@@ -19,8 +19,7 @@ setuptools.setup(
     description="This is a project that could connect to a minio server and sream the conents on a chromecast device.",
     long_description=open('README.md').read(),
     packages=setuptools.find_packages(),
-    install_requires=['minio'],
-    dependency_links=['https://github.com/balloob/pychromecast'],
+    install_requires=['minio', 'PyChromecast>=3.2.2'],
     classifiers=[
         'Development Status :: 2 - Pre-Alpha',
         'Programming Language :: Python',
