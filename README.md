@@ -49,8 +49,9 @@ Install dependencies:
 pip install twine
 ```
 
-create a source distribution and upload them:
+Update the version in `nima_cast/__init__.py`, create a source distribution and upload them:
 ```bash
+nano nima_cast/__init__.py
 python setup.py sdist
 twine upload dist/*
 ```
