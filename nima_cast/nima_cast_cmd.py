@@ -197,4 +197,7 @@ def main():
     HelloWorld().cmdloop()
 
 if __name__ == '__main__':
-    main()
+    if '--quit' in sys.argv:
+        print('Quitting...')
+    else:
+        main()
