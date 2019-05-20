@@ -1,5 +1,63 @@
 # nima_cast
 
+# Usage
+
+```bash
+$ nima_cast
+Welcome! Type ? to list commands. options: --no-minio and --show-debug
+
+(nima.cast) select
+INFO:pychromecast:Querying device status
+INFO:pychromecast:Querying device status
+[0] - Bedroom speaker
+[1] - Living Room TV
+Please choose an index: 1
+
+(nima.cast) list
+[ 0]-   example_video.mp4
+
+(nima.cast) play 0
+INFO:pychromecast.controllers:Receiver:Launching app CC1AD845
+
+(nima.cast) pause
+
+(nima.cast) goto 0:10:0
+
+(nima.cast) pause
+
+(nima.cast) stop
+
+(nima.cast) quit
+INFO:pychromecast:Quiting current app
+INFO:pychromecast.controllers:Receiver:Stopping current app 'CC1AD845'
+
+(nima.cast) exit
+```
+
+# Commands
+
+You can get a list of commands by enterring `?`:
+
+```bash
+(nima.cast) ?
+
+Documented commands (type help <topic>):
+========================================
+EOF     exit  help  play  search  select  stream
+device  goto  list  quit  seek    stop
+
+Undocumented commands:
+======================
+pause  resume
+
+```
+
+Look at the documentation for each of them by entering `help CMD`:
+
+```bash
+(nima.cast) help play
+play [num] starts playing the file specified by the number in results of list
+```
 
 # Installation
 
