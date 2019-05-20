@@ -1,11 +1,13 @@
 language: python
-# python:
-#   - "3.6"
+python:
+  - "3.6"
 #   - "3.6-dev"  # 3.6 development branch
 # # command to install dependencies
 # install:
 #   - pip install -r requirements.txt
 #   - pip install .
+script:
+  - python setup.py sdist
 deploy:
   provider: pypi
   user: nima_mahmoudi
