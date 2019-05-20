@@ -63,8 +63,8 @@ class HelloWorld(cmd.Cmd):
     def do_select(self, num):
         """select [num] selects the number in the search results"""
         if not num:
-            self.do_search(None)
             # print("Please choose an index")
+            self.do_search(None)
             user_input = input ("Please choose an index: ")
             try:
                 num = int(user_input)
@@ -100,8 +100,14 @@ class HelloWorld(cmd.Cmd):
     def do_play(self, num):
         """play [num] starts playing the file specified by the number in results of list"""
         if not num:
-            print("Please choose an index, use <list> to list files")
-            return
+            # print("Please choose an index, use <list> to list files")
+            self.do_list(None)
+            user_input = input ("Please choose an index: ")
+            try:
+                num = int(user_input)
+            except:
+                print("please choose a correct index!")
+                return
 
         num = int(num)
         if num >= len(self.objects):
