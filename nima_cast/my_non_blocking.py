@@ -111,6 +111,45 @@ class HelloWorld(cmd.Cmd):
                 break
 
             time.sleep(1)
+
+    def do_seek(self, time):
+        """seek [time] starts playing the file on the specified time"""
+        if not self.cast:
+            print("please select cast device using <select>, use <search> for options")
+            return
+        time = int(time)
+        self.cast.wait()
+        mc = self.cast.media_controller
+        mc.seek(time)
+
+
+    def do_stream(self, url):
+        """stream [url] starts playing the file specified by the url"""
+        if not self.cast:
+            print("please select cast device using <select>, use <search> for options")
+            return
+
+        self.cast.wait()
+        mc = self.cast.media_controller
+        mc.play_media(url, 'video/mp4')
+        mc.block_until_active(10)
+
+        # t = 0
+        # while True:
+        #     polltime = 0.1
+        #     can_read, _, _ = select.select([self.cast.socket_client.get_socket()], [], [], polltime)
+        #     if can_read:
+        #         #received something on the socket, handle it with run_once()
+        #         self.cast.socket_client.run_once()
+
+        #     t += 1
+        #     if t == 5:
+        #         self.cast.play_media(url, "video/mp4")
+
+        #     if t > 10:
+        #         break
+
+        #     time.sleep(1)
                 
 
     def do_pause(self, line):
@@ -175,26 +214,41 @@ class HelloWorld(cmd.Cmd):
 
     
     def do_EOF(self, line):
-        t = 0
-        if self.cast:
-            while True:
-                polltime = 0.1
-                can_read, _, _ = select.select([self.cast.socket_client.get_socket()], [], [], polltime)
-                if can_read:
-                    #received something on the socket, handle it with run_once()
-                    self.cast.socket_client.run_once()
+        # t = 0
+        # if self.cast:
+        #     while True:
+        #         polltime = 0.1
+        #         can_read, _, _ = select.select([self.cast.socket_client.get_socket()], [], [], polltime)
+        #         if can_read:
+        #             #received something on the socket, handle it with run_once()
+        #             self.cast.socket_client.run_once()
 
-                t += 1
-                if t > 5:
-                    self.cast.quit_app()
-                    break
+        #         t += 1
+        #         if t > 5:
+        #             self.cast.quit_app()
+        #             break
 
-                time.sleep(1)
+        #         time.sleep(1)
 
         return True
 
     def do_exit(self, line):
-        return self.do_EOF(line)
+        # t = 0
+        # if self.cast:
+        #     while True:
+        #         polltime = 0.1
+        #         can_read, _, _ = select.select([self.cast.socket_client.get_socket()], [], [], polltime)
+        #         if can_read:
+        #             #received something on the socket, handle it with run_once()
+        #             self.cast.socket_client.run_once()
+
+        #         t += 1
+        #         if t > 5:
+        #             self.cast.quit_app()
+        #             break
+
+        #         time.sleep(1)
+        return True
 
 if '--show-debug' in sys.argv:
     logging.basicConfig(level=logging.DEBUG)
