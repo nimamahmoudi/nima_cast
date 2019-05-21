@@ -21,7 +21,7 @@ setuptools.setup(
     packages=setuptools.find_packages(),
     install_requires=['minio', 'PyChromecast>=3.2.2'],
     classifiers=[
-        'Development Status :: 2 - Pre-Alpha',
+        'Development Status :: 3 - Alpha',
         'Programming Language :: Python',
         'Programming Language :: Python :: 3',
         'Programming Language :: Python :: 3.6',
