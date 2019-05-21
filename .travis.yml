@@ -16,7 +16,8 @@ deploy:
   user: nima_mahmoudi
   password:
     secure: uuPhsA3IohNs1QZAgDqkI1mAnGtERVunIyD0583TU+3OEtOLPrWAwlHvEJaRRiFF+pibwXLFnXbbaqMX8xrEpo9paVpeRshJXn16b9r0fGcz8mwfFzkHZczvioViXawBbJOlIOUvOgPMsH0nqJ1bR12yYtE7iTpM+FnUVfJKf3+Wmk94Ck1x8lTNMV7YM24Fq+wSBuubQA0WRY2sxpO+v6UalQahsa2whEfjRXCr42jiWrT7chhyDvd3SZTql5lVdex3tYw/REbL0GiuI1xMORe3m1ii52Jw6FX3dbnet0wu+2euIiymfoDnud18ipp4JiQg3M7ARtAXUrGTvbTCNkk9MzKC03VMMqfoQMeb0LzxruEIqI5nbGk2kvT6uRA+pFd+IQz1u/+CVQayy4V4G4g7ZRtTA0b7vpoc8NY3cEon/OXmXOVtAcV2KJt3BkhxMdISbRbtxmJeWeAwTY4uNQkXZoj7xHkkXFBE+w+Pd6G5s49dkE78u5aakX/H466gs7IE+mBM0o06wkYWUsSObcYshY3b9mHyW3XustoKDsW7C817OmPVwovo0BH6ES6libWhjqZOqyTgzVaAyMfEPlLrVw3t5Oi1iDRbwBB5sxy50lzIsCJ61VUR6IrjiubznEjbRjipL3vwe3HntqGEk1/Unui48PsWU7pJHqj07hU=
-  distributions: "sdist bdist_wheel"
+  # distributions: "sdist bdist_wheel"
+  distributions: "sdist"
   skip_existing: true
   on:
     tags: true
