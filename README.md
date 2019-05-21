@@ -137,3 +137,15 @@ Add travis info:
 ```bash
 travis encrypt your-password-here --add deploy.password
 ```
+
+Deploy using travis (after doing the git commit and editting the `nima_cast/__init__.py` file):
+
+```bash
+git tag v0.1.7
+git push --tags
+git push --all
+```
+
+Update the `README.rst` file by using pandoc conversion tool:
+
+[Pandoc Conversion Tool](https://pandoc.org/try/?text=&from=markdown&to=rst)

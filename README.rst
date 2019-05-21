@@ -1,8 +1,3 @@
-|Build Status| |made-with-python| |PyPI version nima-cast| |PyPI
-license| |PyPI format| |PyPI pyversions| |PyPI status| |PyPI - License|
-|GitHub| |Libraries.io dependency status for latest release| |PyPI -
-Downloads| |GitHub issues| |GitHub last commit|
-
 nima_cast CLI
 =============
 
@@ -110,25 +105,6 @@ Running the app
 Options
 =======
 
--  use ``--no-minio`` for
-
-.. |Build Status| image:: https://travis-ci.com/nimamahmoudi/nima_cast.svg?token=J1fG4B1WmwjMJ3ZExa6D&branch=master
-   :target: https://travis-ci.com/nimamahmoudi/nima_cast
-.. |made-with-python| image:: https://img.shields.io/badge/Made%20with-Python-1f425f.svg
-   :target: https://www.python.org/
-.. |PyPI version nima-cast| image:: https://badge.fury.io/py/nima-cast.svg
-   :target: https://pypi.python.org/pypi/nima-cast/
-.. |PyPI license| image:: https://img.shields.io/pypi/l/nima-cast.svg
-   :target: https://pypi.python.org/pypi/nima-cast/
-.. |PyPI format| image:: https://img.shields.io/pypi/format/nima-cast.svg
-   :target: https://pypi.python.org/pypi/nima-cast/
-.. |PyPI pyversions| image:: https://img.shields.io/pypi/pyversions/nima-cast.svg
-   :target: https://pypi.python.org/pypi/nima-cast/
-.. |PyPI status| image:: https://img.shields.io/pypi/status/nima-cast.svg
-   :target: https://pypi.python.org/pypi/nima-cast/
-.. |PyPI - License| image:: https://img.shields.io/pypi/l/nima-cast.svg
-.. |GitHub| image:: https://img.shields.io/github/license/nimamahmoudi/nima_cast.svg
-.. |Libraries.io dependency status for latest release| image:: https://img.shields.io/librariesio/release/pypi/nima-cast.svg
-.. |PyPI - Downloads| image:: https://img.shields.io/pypi/dm/nima-cast.svg
-.. |GitHub issues| image:: https://img.shields.io/github/issues/nimamahmoudi/nima_cast.svg
-.. |GitHub last commit| image:: https://img.shields.io/github/last-commit/nimamahmoudi/nima_cast.svg
+-  use ``--no-minio`` for streaming purposes (no need to connect to
+   minio).
+-  use ``--show-debug`` to see debug messages from the cast.
