@@ -17,7 +17,7 @@ setuptools.setup(
     author="Nima Mahmoudi",
     author_email="nima_mahmoudi@live.com",
     description="This is a project that could connect to a minio server and sream the conents on a chromecast device.",
-    long_description=open('README.md').read(),
+    long_description=open('README.rst').read(),
     packages=setuptools.find_packages(),
     install_requires=['minio', 'PyChromecast>=3.2.2'],
     classifiers=[
