@@ -158,6 +158,20 @@ class HelloWorld(cmd.Cmd):
         self.cast.wait()
         mc = self.cast.media_controller
         mc.pause()
+
+    # def do_sub(self, line):
+    #     if not self.cast:
+    #         print("please select cast device using <select>, use <search> for options")
+    #         return
+
+    #     sub_url = r'http://cyb.nima-dev.com:9000/data/tv/The.Big.Bang.Theory.S08E01.HDTV.x264-LOL.HI.srt?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=Q34OR1AW4WU4YJCNIDC5%2F20190525%2F%2Fs3%2Faws4_request&X-Amz-Date=20190525T173612Z&X-Amz-Expires=604800&X-Amz-SignedHeaders=host&X-Amz-Signature=6eef55bfb4b12f2cc1003a4e023ca46ca04140fc646c0663047198d719e5a03e'
+    #     url = r'http://cyb.nima-dev.com:9000/data/tv/ThBgBngThry-S08E01-480p_iMovie-DL.mkv?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=Q34OR1AW4WU4YJCNIDC5%2F20190525%2F%2Fs3%2Faws4_request&X-Amz-Date=20190525T173743Z&X-Amz-Expires=604800&X-Amz-SignedHeaders=host&X-Amz-Signature=51ad8634645b62b54d74ba7c66af2645db21935c760f333c4163668fe647a7f9'
+    #     self.cast.wait()
+    #     mc = self.cast.media_controller
+    #     mc.play_media(url, 'video/mp4', subtitles=sub_url)
+    #     mc.block_until_active(10)
+    #     mc.enable_subtitle(1)
+    #     print('Line:' + line)
         
     def do_resume(self, line):
         if not self.cast:
