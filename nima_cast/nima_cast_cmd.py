@@ -60,6 +60,21 @@ class HelloWorld(cmd.Cmd):
         """goto 0:00:25 seeks to the time specified as an argument"""
         return self.do_seek(get_sec(line))
 
+    def do_sel(self, name):
+        """sel [name] to select the chromecast with name "name" as the main chromecast device"""
+        if not name:
+            # return do_select(self, None)
+            name = "Living Room TV"
+
+        self.do_search(None)
+        cast = next(cc for cc in self.casts if cc.device.friendly_name == name)
+        if cast:
+            self.cast = cast
+            self.fn = cast.device.friendly_name
+            self.cast.start()
+
+
+
     def do_select(self, num):
         """select [num] selects the number in the search results"""
         if not num:
