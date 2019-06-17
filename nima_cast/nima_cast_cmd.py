@@ -1,7 +1,8 @@
 import cmd
 import pychromecast
 
-import os, sys
+import os
+import sys
 from minio import Minio
 from minio.error import ResponseError
 import logging
@@ -28,6 +29,7 @@ def get_sec(time_str):
     h, m, s = time_str.split(':')
     return int(h) * 3600 + int(m) * 60 + int(s)
 
+
 class HelloWorld(cmd.Cmd):
     """Simple command processor example."""
 
@@ -41,9 +43,9 @@ class HelloWorld(cmd.Cmd):
 
     if not no_minio:
         minioClient = Minio(minio_server,
-                        access_key= minio_access_key,
-                        secret_key= minio_secret_key,
-                        secure=False)
+                            access_key=minio_access_key,
+                            secret_key=minio_secret_key,
+                            secure=False)
 
     def do_search(self, line):
         """Search a list of available devices..."""
@@ -73,14 +75,12 @@ class HelloWorld(cmd.Cmd):
             self.fn = cast.device.friendly_name
             self.cast.start()
 
-
-
     def do_select(self, num):
         """select [num] selects the number in the search results"""
         if not num:
             # print("Please choose an index")
             self.do_search(None)
-            user_input = input ("Please choose an index: ")
+            user_input = input("Please choose an index: ")
             try:
                 num = int(user_input)
             except:
@@ -103,10 +103,11 @@ class HelloWorld(cmd.Cmd):
     def do_device(self, line):
         """Shows the name of the selected device"""
         print(self.fn)
-    
+
     def do_list(self, line):
         """List files on the server"""
-        self.objects = list(self.minioClient.list_objects(BUCKET_NAME, prefix='tv/', recursive=True))
+        self.objects = list(self.minioClient.list_objects(
+            BUCKET_NAME, prefix='tv/', recursive=True))
         i = 0
         for obj in self.objects:
             print("[{:2d}]- \t{}".format(i, obj.object_name))
@@ -117,7 +118,7 @@ class HelloWorld(cmd.Cmd):
         if not num:
             # print("Please choose an index, use <list> to list files")
             self.do_list(None)
-            user_input = input ("Please choose an index: ")
+            user_input = input("Please choose an index: ")
             try:
                 num = int(user_input)
             except:
@@ -134,7 +135,8 @@ class HelloWorld(cmd.Cmd):
             return
 
         obj = self.objects[num]
-        url = self.minioClient.presigned_get_object(BUCKET_NAME, obj.object_name)
+        url = self.minioClient.presigned_get_object(
+            BUCKET_NAME, obj.object_name)
         print(url)
 
         self.cast.wait()
@@ -152,7 +154,6 @@ class HelloWorld(cmd.Cmd):
         self.cast.wait()
         mc = self.cast.media_controller
         mc.seek(time)
-
 
     def do_stream(self, url):
         """stream [url] starts playing the file specified by the url"""
@@ -187,12 +188,12 @@ class HelloWorld(cmd.Cmd):
     #     mc.block_until_active(10)
     #     mc.enable_subtitle(1)
     #     print('Line:' + line)
-        
+
     def do_resume(self, line):
         if not self.cast:
             print("please select cast device using <select>, use <search> for options")
             return
-        
+
         self.cast.wait()
         mc = self.cast.media_controller
         mc.play()
@@ -213,7 +214,6 @@ class HelloWorld(cmd.Cmd):
         self.cast.quit_app()
         return
 
-    
     def do_EOF(self, line):
         """exits this environment, just press Ctrl+D"""
         return True
@@ -222,12 +222,14 @@ class HelloWorld(cmd.Cmd):
         """exits this environment"""
         return True
 
+
 def main():
     if '--quit' in sys.argv:
         print('Quitting...')
         return
     else:
         HelloWorld().cmdloop()
+
 
 if __name__ == '__main__':
     main()
